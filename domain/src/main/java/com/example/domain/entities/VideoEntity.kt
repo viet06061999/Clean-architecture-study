@@ -6,10 +6,8 @@ data class VideoEntity(
     var height: Int = -1,
     var url: String = "",
     var image: String = "",
-    var fullRes: String = "",
-    var tags: ArrayList<String> = arrayListOf(),
-    var duration: Int? = null,
+    var duration: Int = -1,
     var user: UserEntity = UserEntity(),
-    var videoFiles: ArrayList<VideoFileEntity> = arrayListOf(),
-    var videoPictures: ArrayList<VideoPictureEntity> = arrayListOf()
+    var videoFiles: List<VideoFileEntity> = arrayListOf(),
+    var videoPictures: List<VideoPictureEntity> = arrayListOf()
 )
