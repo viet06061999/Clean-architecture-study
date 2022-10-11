@@ -13,9 +13,19 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner  rootProject.ext.testInstrumentationRunner
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
     }
-
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            buildConfigField("String", "BASE_URL", "\"${BASE_URL}\"")
+            applicationIdSuffix =".dev"
+        }
+        staging{
+            applicationIdSuffix =".staging"
+        }
+        live{}
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,6 +43,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(":data")
+    implementation project(":presentation")
+    implementation project(":domain")
 
     implementation "androidx.core:core-ktx:$kotlinVersion"
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -42,4 +55,15 @@ dependencies {
     testImplementation rootProject.ext.junit
     androidTestImplementation rootProject.ext.androidTest
     androidTestImplementation rootProject.ext.uiTest
+
+    implementation rootProject.ext.koin
+    implementation rootProject.ext.koinAndroid
+    testImplementation rootProject.ext.koinTest
+    testImplementation rootProject.ext.koinTestJunit
+
+    implementation rootProject.ext.rxJava
+//    implementation rootProject.ext.rxKotlin
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+
+
 }

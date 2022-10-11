@@ -4,11 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    namespace 'com.example.presentation'
+    compileSdk 32
 
     defaultConfig {
-        minSdk 23
-        targetSdk 33
+        minSdk 21
+        targetSdk 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -30,29 +31,14 @@ android {
 }
 
 dependencies {
-    implementation project(':domain')
+    implementation project(":domain")
 
-    implementation "androidx.core:core-ktx:$kotlinVersion"
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation rootProject.ext.rxJava
-    implementation rootProject.ext.retrofit
-    implementation rootProject.ext.retrofitGsonConverter
-    implementation rootProject.ext.retrofitRxJava2Adapter
-    implementation rootProject.ext.room
-
-    testImplementation rootProject.ext.junit
-    testImplementation rootProject.ext.mockito
-    androidTestImplementation rootProject.ext.androidTestRunner
-    androidTestImplementation rootProject.ext.mockWebserver
-
-    testImplementation "android.arch.persistence.room:testing:1.1.1"
-
-    implementation rootProject.ext.koin
-    implementation rootProject.ext.koinAndroid
-    testImplementation rootProject.ext.koinTest
-    testImplementation rootProject.ext.koinTestJunit
+    implementation "io.insert-koin:koin-android:3.2.2"
 }

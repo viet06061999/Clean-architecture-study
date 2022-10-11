@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.8">
       <module name="Video_Clean_architecture.app" target="11" />
       <module name="Video_Clean_architecture.data" target="11" />
+      <module name="Video_Clean_architecture.presentation" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

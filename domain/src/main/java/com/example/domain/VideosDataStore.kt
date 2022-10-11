@@ -2,7 +2,7 @@ package com.example.domain
 
 import com.example.domain.entities.Optional
 import com.example.domain.entities.VideoEntity
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 interface VideosDataStore {
 

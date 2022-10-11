@@ -1,7 +1,7 @@
 package com.example.domain.common
 
 import com.example.domain.entities.Optional
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 abstract class Mapper<in E, T> {
 

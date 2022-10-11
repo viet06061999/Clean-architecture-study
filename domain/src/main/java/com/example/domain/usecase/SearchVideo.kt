@@ -3,7 +3,7 @@ package com.example.domain.usecase
 import com.example.domain.VideosRepository
 import com.example.domain.common.Transformer
 import com.example.domain.entities.VideoEntity
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 class SearchVideo(
     transformer: Transformer<List<VideoEntity>>,

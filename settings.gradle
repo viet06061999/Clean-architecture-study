@@ -16,3 +16,4 @@ rootProject.name = "Video Clean architecture"
 include ':app'
 include ':domain'
 include ':data'
+include ':presentation'

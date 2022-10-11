@@ -1,7 +1,7 @@
 package com.example.domain.usecase
 
 import com.example.domain.common.Transformer
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 abstract class UseCase<T>(private val transformer: Transformer<T>) {
 
