@@ -1,9 +1,8 @@
 package com.example.cleanarch
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.data.Impl
+import androidx.appcompat.app.AppCompatActivity
 import com.example.presentation.PresentationActivity
 
 class MainActivity : AppCompatActivity() {

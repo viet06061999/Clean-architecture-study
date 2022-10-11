@@ -18,13 +18,13 @@ android {
     flavorDimensions "default"
     productFlavors {
         dev {
-            buildConfigField("String", "BASE_URL", "\"${BASE_URL}\"")
             applicationIdSuffix =".dev"
         }
         staging{
             applicationIdSuffix =".staging"
         }
-        live{}
+        live{
+        }
     }
     buildTypes {
         release {

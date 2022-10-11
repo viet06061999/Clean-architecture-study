@@ -12,7 +12,7 @@ interface VideoService {
 
     @GET("videos/search")
     fun searchVideos(
-        @Query("query") query: Int,
+        @Query("query") query: String,
         @Query("page") page: Int = 1
     ): Observable<VideoListResult>
 }
