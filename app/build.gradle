@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
+def evnPropertiesFile = rootProject.file("evn.properties")
+def evnProperties = new Properties()
+evnProperties.load(new FileInputStream(evnPropertiesFile))
 
 android {
     compileSdk rootProject.ext.targetSdkVersion
@@ -16,16 +19,24 @@ android {
         testInstrumentationRunner rootProject.ext.testInstrumentationRunner
     }
     flavorDimensions "default"
+
     productFlavors {
         dev {
-            applicationIdSuffix =".dev"
+            applicationIdSuffix = ".dev"
+            buildConfigField("String", "BASE_URL", "\"${evnProperties["BASE_URL_DEV"]}\"")
+            buildConfigField "String", "API_KEY", "\"${api_key}\""
         }
-        staging{
-            applicationIdSuffix =".staging"
+        staging {
+            applicationIdSuffix = ".staging"
+            buildConfigField("String", "BASE_URL", "\"${evnProperties["BASE_URL"]}\"")
+            buildConfigField "String", "API_KEY", "\"${api_key}\""
         }
-        live{
+        live {
+            buildConfigField("String", "BASE_URL", "\"${evnProperties["BASE_URL"]}\"")
+            buildConfigField "String", "API_KEY", "\"${api_key}\""
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,6 +49,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
     }
 }
 
@@ -61,6 +76,9 @@ dependencies {
     testImplementation rootProject.ext.koinTest
     testImplementation rootProject.ext.koinTestJunit
 
+    implementation rootProject.ext.retrofit
+    implementation rootProject.ext.retrofitGsonConverter
+    implementation rootProject.ext.retrofitRxJava3Adapter
     implementation rootProject.ext.rxJava
 //    implementation rootProject.ext.rxKotlin
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'

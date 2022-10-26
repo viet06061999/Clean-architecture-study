@@ -6,12 +6,13 @@ ext {
 
     testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     rxJava = "io.reactivex.rxjava3:rxjava:3.1.5"
+    rxAndroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
     room = "android.arch.persistence.room:runtime:1.0.0"
-    rxKotlin = "com.github.reactivex:rxkotlin:3.0.1"
+    rxKotlin = "io.reactivex.rxjava3:rxkotlin:3.0.1"
 
     retrofit = "com.squareup.retrofit2:retrofit:2.3.0"
     retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:2.3.0"
-    retrofitRxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    retrofitRxJava3Adapter = "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
 
     // Testing
     junit = "junit:junit:4.12"

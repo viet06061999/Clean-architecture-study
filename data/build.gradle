@@ -8,11 +8,11 @@ def evnProperties = new Properties()
 evnProperties.load(new FileInputStream(evnPropertiesFile))
 
 android {
-    compileSdk 33
+    compileSdk 32
 
     defaultConfig {
         minSdk 23
-        targetSdk 33
+        targetSdk 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -22,17 +22,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    productFlavors {
-        dev {
-            buildConfigField("String", "BASE_URL", evnProperties['BASE_URL_DEV'])
-        }
-        staging {
-            buildConfigField("String", "BASE_URL", evnProperties['BASE_URL'])
-        }
-        live {
-            buildConfigField("String", "BASE_URL", evnProperties['BASE_URL'])
         }
     }
     compileOptions {
@@ -54,20 +43,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation rootProject.ext.rxJava
+    implementation rootProject.ext.rxAndroid
     implementation rootProject.ext.retrofit
     implementation rootProject.ext.retrofitGsonConverter
-    implementation rootProject.ext.retrofitRxJava2Adapter
+    implementation rootProject.ext.retrofitRxJava3Adapter
     implementation rootProject.ext.room
 
     testImplementation rootProject.ext.junit
     testImplementation rootProject.ext.mockito
+    testImplementation rootProject.ext.mockWebserver
     androidTestImplementation rootProject.ext.androidTestRunner
     androidTestImplementation rootProject.ext.mockWebserver
 
     testImplementation "android.arch.persistence.room:testing:1.1.1"
-
-    implementation rootProject.ext.koin
-    implementation rootProject.ext.koinAndroid
-    testImplementation rootProject.ext.koinTest
-    testImplementation rootProject.ext.koinTestJunit
 }

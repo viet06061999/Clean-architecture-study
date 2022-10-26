@@ -16,6 +16,7 @@ class VideosRemoteDataStore(
 
     override fun getPopularVideos(page: Int): Observable<List<VideoEntity>> {
         return api.geVideosPopular(page).map {
+            println("ThreadAAA:" + Thread.currentThread().name)
             it.videos.map { videoData ->
                 VideoDataEntityMapper().mapFrom(videoData)
             }
