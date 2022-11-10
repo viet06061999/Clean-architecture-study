@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.WorkerActivity">
+
+    <EditText
+        android:id="@+id/title_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/body_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Body"
+        app:layout_constraintTop_toBottomOf="@id/title_edt" />
+
+    <EditText
+        android:id="@+id/time_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Time(s)"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/body_edt" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:gravity="center"
+        android:text="Submit"
+        app:layout_constraintTop_toBottomOf="@id/time_edt" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.example.presentation.base
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -18,7 +17,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
 import com.example.presentation.R
@@ -85,7 +83,7 @@ abstract class BindingFragmentBottomSheet<T : ViewBinding>
     }
 
     open fun onPermissionResult(permissions: Map<String, Boolean>) {
-        permissions.entries.forEach {
+        permissions.entries.iterator().forEach {
             Log.e("DEBUG", "${it.key} = ${it.value}")
         }
     }

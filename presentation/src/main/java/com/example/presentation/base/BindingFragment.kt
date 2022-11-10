@@ -184,7 +184,7 @@ abstract class BindingFragment<T : ViewBinding>(private val inflate: (LayoutInfl
     }
 
     open fun onPermissionResult(permissions: Map<String, Boolean>) {
-        permissions.entries.forEach {
+        permissions.entries.iterator().forEach {
             Log.e("DEBUG", "${it.key} = ${it.value}")
         }
     }
