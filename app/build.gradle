@@ -78,10 +78,10 @@ dependencies {
 
     implementation rootProject.ext.retrofit
     implementation rootProject.ext.retrofitGsonConverter
-    implementation rootProject.ext.retrofitRxJava3Adapter
-    implementation rootProject.ext.rxJava
+//    implementation rootProject.ext.retrofitRxJava3Adapter
+//    implementation rootProject.ext.rxJava
 //    implementation rootProject.ext.rxKotlin
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+//    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
 
 }

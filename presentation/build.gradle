@@ -10,7 +10,9 @@ plugins {
 android {
     namespace 'com.example.presentation'
     compileSdk 32
-
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     defaultConfig {
         minSdk 21
         targetSdk 32
@@ -61,10 +63,14 @@ dependencies {
     implementation rootProject.ext.koinAndroid
     testImplementation rootProject.ext.koinTest
     testImplementation rootProject.ext.koinTestJunit
+    testImplementation rootProject.ext.mockito
+    testImplementation rootProject.ext.mokk
+    testImplementation rootProject.ext.coroutineTest
+    testImplementation rootProject.ext.coreTesting
 
-    implementation rootProject.ext.rxJava
-    implementation rootProject.ext.rxKotlin
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+//    implementation rootProject.ext.rxJava
+//    implementation rootProject.ext.rxKotlin
+//    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
     implementation "com.airbnb.android:lottie:5.0.3"
     implementation 'com.github.bumptech.glide:glide:4.11.0'

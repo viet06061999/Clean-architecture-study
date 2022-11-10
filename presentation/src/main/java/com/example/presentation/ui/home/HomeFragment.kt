@@ -1,5 +1,6 @@
 package com.example.presentation.ui.home
 
+import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import com.example.presentation.base.BindingFragment
 import com.example.presentation.databinding.FragmentHomeBinding
@@ -10,6 +11,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     override val viewModel: HomeViewModel by viewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getPopularVideos()
+    }
 
     override fun setupView() {
         binding.lifecycleOwner = this

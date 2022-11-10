@@ -9,7 +9,7 @@ java {
 }
 
 dependencies {
-    implementation rootProject.ext.rxJava
+    implementation rootProject.ext.coroutine
     testImplementation rootProject.ext.junit
     testImplementation rootProject.ext.mockito
 }

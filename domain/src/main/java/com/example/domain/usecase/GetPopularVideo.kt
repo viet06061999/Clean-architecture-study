@@ -1,17 +1,15 @@
 package com.example.domain.usecase
 
 import com.example.domain.VideosRepository
-import com.example.domain.common.Transformer
 import com.example.domain.entities.VideoEntity
-import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class GetPopularVideo(
-    transformer: Transformer<List<VideoEntity>>,
     private val videosRepository: VideosRepository
-) : UseCase<List<VideoEntity>>(transformer) {
+) {
 
-    override fun createObservable(data: Map<String, Any>?): Observable<List<VideoEntity>> {
-        val page = data?.get(PARAM_SEARCH_PAGE) ?: return Observable.empty()
-        return videosRepository.getPopularVideos(page as? Int ?: 1)
+    operator fun invoke(page: Int): Flow<List<VideoEntity>> = flow {
+        emit(videosRepository.getPopularVideos(page))
     }
 }
