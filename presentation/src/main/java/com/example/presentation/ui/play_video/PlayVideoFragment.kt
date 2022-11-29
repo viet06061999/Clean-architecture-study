@@ -5,6 +5,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.presentation.base.BindingFragment
 import com.example.presentation.databinding.FragmentPlayVideoBinding
 import com.example.presentation.ui.home.HomeViewModel
+import com.google.android.exoplayer2.ui.StyledPlayerView.ControllerVisibilityListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -17,15 +18,22 @@ class PlayVideoFragment :
     override fun onResume() {
         super.onResume()
         requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        binding.playerView.setControllerVisibilityListener(ControllerVisibilityListener {
+            binding.btnClose.visibility = it
+        })
     }
 
     override fun setupView() {
         binding.url = args.video.videoFiles.first().link
-//        binding.btnShare.setOnClickListener {
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                enableBluetooth()
-//            }
-//        }
+
+        binding.btnClose.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.playerView.setControllerVisibilityListener(null as ControllerVisibilityListener?)
     }
 
     override fun onDestroy() {
