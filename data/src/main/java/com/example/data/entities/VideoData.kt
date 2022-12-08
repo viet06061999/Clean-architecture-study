@@ -21,4 +21,21 @@ data class VideoData(
     var videoFiles: List<VideoFileData> = arrayListOf(),
     @SerializedName("video_pictures")
     var videoPictures: List<VideoPictureData> = arrayListOf()
-)
+) {
+
+    fun getSaveData(): VideoData {
+        return this.apply {
+            user.videoId = id
+            videoFiles.forEach {
+                it.apply {
+                    videoId = id
+                }
+            }
+            videoPictures.forEach {
+                it.apply {
+                    videoId = id
+                }
+            }
+        }
+    }
+}

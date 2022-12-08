@@ -7,6 +7,6 @@ import com.example.domain.entities.VideoPictureEntity
 class VideoPictureDataEntityMapper : Mapper<VideoPictureData, VideoPictureEntity>() {
 
     override fun mapFrom(from: VideoPictureData): VideoPictureEntity {
-        return VideoPictureEntity(from.id, from.picture, from.nr)
+        return VideoPictureEntity(from.videoPictureId, from.picture, from.nr)
     }
 }

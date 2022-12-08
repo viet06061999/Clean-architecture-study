@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 def evnPropertiesFile = rootProject.file("evn.properties")
@@ -59,4 +60,10 @@ dependencies {
     testImplementation "android.arch.persistence.room:testing:1.6"
     testImplementation rootProject.ext.coroutineTest
 
+
+    implementation rootProject.ext.room
+    implementation rootProject.ext.roomKtx
+    annotationProcessor rootProject.ext.annotationRoom
+    kapt rootProject.ext.annotationRoomKapt
+//    ksp rootProject.ext.annotationRoomKsp
 }

@@ -1,7 +1,6 @@
 package com.example.presentation.ui.home
 
 import android.os.Bundle
-import androidx.navigation.fragment.findNavController
 import com.example.presentation.base.BindingFragment
 import com.example.presentation.databinding.FragmentHomeBinding
 import com.example.presentation.entities.VideoUIEntity
@@ -21,13 +20,16 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
         binding.lifecycleOwner = this
         binding.homeVM = viewModel
         binding.recyclerVideo.adapter = VideoAdapter(this::onItemClick)
+        viewModel.getFavourites()
     }
 
     private fun onItemClick(item: VideoUIEntity) {
-        findNavController().navigate(
-            HomeFragmentDirections.actionNavigationHomeToPlayVideoFragment(
-                item
-            )
-        )
+        println("click")
+        viewModel.insertFavourite(item)
+//        findNavController().navigate(
+//            HomeFragmentDirections.actionNavigationHomeToPlayVideoFragment(
+//                item
+//            )
+//        )
     }
 }

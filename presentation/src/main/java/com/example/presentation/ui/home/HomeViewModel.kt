@@ -3,7 +3,10 @@ package com.example.presentation.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.domain.common.UseCase
+import com.example.domain.usecase.GetFavourites
 import com.example.domain.usecase.GetPopularVideo
+import com.example.domain.usecase.InsertFavourite
 import com.example.presentation.base.RxViewModel
 import com.example.presentation.entities.VideoUIEntity
 import com.example.presentation.mappers.VideoEntityToUIMapper
@@ -13,7 +16,11 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val getPopularVideo: GetPopularVideo) : RxViewModel() {
+class HomeViewModel(
+    private val getPopularVideo: GetPopularVideo,
+    private val insertFavourite: InsertFavourite,
+    private val getFavourites: GetFavourites
+) : RxViewModel() {
 
     private val _videos = MutableLiveData<List<VideoUIEntity>>()
     val videos: LiveData<List<VideoUIEntity>>
@@ -34,16 +41,36 @@ class HomeViewModel(private val getPopularVideo: GetPopularVideo) : RxViewModel(
 
             val deferreds = listOf(
                 async(Dispatchers.IO) {
-                    println("1::" + Thread.currentThread().name)
                     getPopularVideo(1)
                 },
                 async(Dispatchers.IO) {
-                    println(Thread.currentThread().name)
                     getPopularVideo(2)
                 }
             )
-            val responseAll = deferreds.awaitAll()
-            println(responseAll)
+            deferreds.awaitAll()
+        }
+    }
+
+    fun insertFavourite(videoUI: VideoUIEntity) {
+        videoUI.rawVideoEntity?.let {
+            insertFavourite(it, viewModelScope)
+        }
+    }
+
+    fun getFavourites() {
+        getFavourites(UseCase.None(), viewModelScope) {
+            it.fold(
+                {
+                    println(it)
+                },
+                {
+                    viewModelScope.launch {
+                        it.collectLatest { favourites ->
+                            println("favourite:$favourites")
+                        }
+                    }
+                }
+            )
         }
     }
 }

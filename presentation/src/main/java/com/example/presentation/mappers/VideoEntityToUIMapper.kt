@@ -5,8 +5,9 @@ import com.example.domain.entities.VideoEntity
 import com.example.presentation.entities.VideoFileUIEntity
 import com.example.presentation.entities.VideoPictureUIEntity
 import com.example.presentation.entities.VideoUIEntity
+import com.google.gson.Gson
 
-class VideoEntityToUIMapper:Mapper<VideoEntity, VideoUIEntity>() {
+class VideoEntityToUIMapper : Mapper<VideoEntity, VideoUIEntity>() {
 
     override fun mapFrom(from: VideoEntity): VideoUIEntity {
         return VideoUIEntity(
@@ -18,11 +19,12 @@ class VideoEntityToUIMapper:Mapper<VideoEntity, VideoUIEntity>() {
             duration = from.duration,
             user = from.user.name,
             videoFiles = from.videoFiles.map {
-            VideoFileUIEntity(it.videoFileId,it.quality,it.fileType,it.link)
+                VideoFileUIEntity(it.videoFileId, it.quality, it.fileType, it.link)
             },
             videoPictures = from.videoPictures.map {
                 VideoPictureUIEntity(it.id, it.picture)
-            }
+            },
+            rawData = Gson().toJson(from)
         )
     }
 }

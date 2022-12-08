@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+    id 'kotlin-kapt'
 }
 def evnPropertiesFile = rootProject.file("evn.properties")
 def evnProperties = new Properties()
@@ -82,6 +85,11 @@ dependencies {
 //    implementation rootProject.ext.rxJava
 //    implementation rootProject.ext.rxKotlin
 //    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-
-
+    implementation platform('com.google.firebase:firebase-bom:31.1.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation rootProject.ext.room
+    annotationProcessor rootProject.ext.annotationRoom
+    kapt rootProject.ext.annotationRoomKapt
+//    ksp rootProject.ext.annotationRoomKsp
 }
